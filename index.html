@@ -9,246 +9,335 @@
 <style>
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
   color: white;
-  background: #17152b;
-  overflow-x: hidden;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
+  min-height: 100vh;
 }
 
 .screen {
   display: none;
   min-height: 100vh;
-  padding: 25px 18px;
+  padding: 75px 18px 35px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
-.active {
+.screen.active {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: appear 0.7s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
-  font-size: 35px;
-  margin-bottom: 12px;
+  font-size: clamp(2rem, 8vw, 3rem);
+  margin-bottom: 18px;
 }
 
 p {
+  font-size: 1.15rem;
   line-height: 1.8;
-  font-size: 17px;
+  max-width: 600px;
 }
 
-.heart {
-  font-size: 55px;
-  animation: pulse 1.5s infinite;
+button {
+  border: 0;
+  border-radius: 30px;
+  padding: 14px 25px;
+  margin: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #56385e;
+  background: white;
+  box-shadow: 0 5px 18px #0003;
+  transition: .2s;
 }
 
-@keyframes pulse {
-  50% { transform: scale(1.18); }
-}
-
-.family-list {
-  width: 100%;
-  max-width: 400px;
-  display: grid;
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.person {
-  border: 1px solid #ffffff40;
-  border-radius: 18px;
-  padding: 20px;
-  color: white;
-  font-size: 20px;
-  background: #ffffff16;
-  transition: .25s;
-}
-
-.person:active {
-  transform: scale(.96);
-}
-
-.person:hover {
-  background: #ffffff30;
-}
-
-.message {
-  max-width: 520px;
-  padding: 25px;
-  border-radius: 25px;
-  border: 1px solid #ffffff55;
-  background: #ffffff12;
-  backdrop-filter: blur(8px);
-}
-
-.scene {
-  font-size: 100px;
-  margin: 15px;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  50% { transform: translateY(-12px); }
-}
-
-.mom {
-  background: linear-gradient(160deg,#35152d,#a84b71,#f3a17c);
-}
-
-.dad {
-  background: linear-gradient(160deg,#120b18,#610d22,#ff3434);
-}
-
-.brother {
-  background: linear-gradient(160deg,#073e3a,#167b65,#a4c76c);
-}
-
-.me {
-  background: linear-gradient(160deg,#160e35,#49227e,#a56bdb);
+button:hover {
+  transform: translateY(-4px) scale(1.04);
 }
 
 .back {
-  margin-top: 25px;
-  padding: 13px 25px;
-  border: 1px solid #ffffff70;
-  border-radius: 30px;
-  color: white;
-  background: #ffffff20;
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  z-index: 5;
 }
 
-footer {
-  margin-top: 35px;
-  opacity: .7;
-  font-size: 12px;
+.message {
+  background: #ffffff25;
+  border: 1px solid #ffffff65;
+  border-radius: 25px;
+  padding: 25px 20px;
+  width: min(92%, 550px);
+  margin: 15px auto;
+  box-shadow: 0 8px 30px #0002;
+  backdrop-filter: blur(8px);
+}
+
+.decoration {
+  font-size: 27px;
+  margin: 15px;
+  letter-spacing: 8px;
+}
+
+/* AÇILIŞ */
+#welcome {
+  background: linear-gradient(145deg, #34265f, #865caa, #e59bbd);
+}
+
+.welcome-heart {
+  font-size: 90px;
+  animation: heartbeat 1.5s infinite;
+  margin: 15px;
+  filter: drop-shadow(0 0 18px #ffb4d9);
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  font-size: 22px;
+  animation: float 5s ease-in-out infinite;
+  opacity: .8;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-25px) rotate(20deg); }
+}
+
+.cloud {
+  position: absolute;
+  font-size: 55px;
+  opacity: .55;
+  animation: cloudMove 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes cloudMove {
+  from { transform: translateX(-20px); }
+  to { transform: translateX(30px); }
+}
+
+/* SEÇİM */
+#selection {
+  background: linear-gradient(145deg, #514078, #a47bbd, #e6a9c8);
+}
+
+.member {
+  width: min(90%, 330px);
+  padding: 17px;
+  margin: 8px;
+  border-radius: 20px;
+  font-size: 1.15rem;
+  background: #ffffffdf;
+  color: #51375f;
+}
+
+/* ANNE */
+#mom {
+  background: linear-gradient(160deg, #8c5b78, #d89b9c, #f5c6a9);
+}
+
+.house {
+  font-size: 115px;
+  margin: 10px;
+  animation: float 4s infinite ease-in-out;
+}
+
+/* BABA */
+#dad {
+  background: linear-gradient(145deg, #171b36, #384c75, #a65f72);
+}
+
+.car {
+  font-size: 110px;
+  margin: 15px;
+  animation: carMove 3s ease-in-out infinite alternate;
+}
+
+@keyframes carMove {
+  from { transform: translateX(-12px); }
+  to { transform: translateX(12px); }
+}
+
+.gt-label {
+  font-weight: bold;
+  letter-spacing: 5px;
+  color: #ffccd5;
+  margin-bottom: 15px;
+}
+
+/* KARDEŞ */
+#brother {
+  background: linear-gradient(145deg, #315e6a, #72a99d, #b4d8b3);
+}
+
+.turtle {
+  font-size: 130px;
+  margin: 15px;
+  animation: turtleWalk 4s ease-in-out infinite alternate;
+}
+
+@keyframes turtleWalk {
+  from { transform: translateX(-15px) rotate(-5deg); }
+  to { transform: translateX(15px) rotate(5deg); }
+}
+
+/* BEN */
+#me {
+  background: linear-gradient(145deg, #30265e, #765caa, #b48acb);
+}
+
+.moon {
+  font-size: 100px;
+  margin: 15px;
+  animation: float 4s infinite ease-in-out;
+}
+
+.small-note {
+  margin-top: 18px;
+  font-size: .9rem;
+  opacity: .8;
+}
+
+@media(max-width:400px) {
+  .message { padding: 20px 15px; }
+  p { font-size: 1.05rem; }
 }
 </style>
 </head>
 
 <body>
-
-<!-- AÇILIŞ -->
+  
+<!-- AÇILIŞ EKRANI -->
 <section id="welcome" class="screen active">
-  <div class="heart">❤️</div>
-  <h1>Ailem</h1>
-  <p>Ailem, iyi ki varsınız! ❤️</p>
-  <button class="person" onclick="showScreen('selection')">
-    Sürprizi Aç ✨
-  </button>
-  <footer>Sevgiyle hazırlandı ☁️</footer>
+
+  <div class="stars">
+    <span class="star" style="top:12%;left:12%">⭐</span>
+    <span class="star" style="top:20%;right:15%;animation-delay:1s">✨</span>
+    <span class="star" style="top:65%;left:8%;animation-delay:2s">🌟</span>
+    <span class="star" style="bottom:12%;right:12%;animation-delay:1.5s">⭐</span>
+    <span class="star" style="top:45%;right:7%;animation-delay:3s">✨</span>
+  </div>
+
+  <span class="cloud" style="top:8%;left:5%">☁️</span>
+  <span class="cloud" style="bottom:8%;right:5%">☁️</span>
+
+  <div class="welcome-heart">❤️</div>
+  <h1>Ailem, iyi ki varsınız!</h1>
+  <p>Bu küçük site, benim için çok değerli olan insanlara…</p>
+  <button onclick="showScreen('selection')">Sürprizi Aç ✨</button>
+  <div class="decoration">💗 ⭐ 💗 ⭐ 💗</div>
 </section>
 
-<!-- KİŞİ SEÇİMİ -->
+<!-- AİLE SEÇİMİ -->
 <section id="selection" class="screen">
-  <div class="heart">☁️</div>
-  <h1>Canım Ailem ❤️</h1>
-  <p>Kimin sürprizini görmek istersin?</p>
+  <button class="back" onclick="showScreen('welcome')">← Geri</button>
 
-  <div class="family-list">
-    <button class="person" onclick="showScreen('mom')">
-      🌸 Annem
-    </button>
+  <h1>Birini Seç ❤️</h1>
+  <p>Her birinize ayrı bir mesajım var!</p>
 
-    <button class="person" onclick="showScreen('dad')">
-      ❤️ Babam
-    </button>
+  <button class="member" onclick="showScreen('mom')">🌷 Annem</button>
+  <button class="member" onclick="showScreen('dad')">🚗 Babam</button>
+  <button class="member" onclick="showScreen('brother')">🐢 Küçük Kardeşim</button>
+  <button class="member" onclick="showScreen('me')">🌌 Ben</button>
 
-    <button class="person" onclick="showScreen('brother')">
-      💚 Küçük Kardeşim
-    </button>
-
-    <button class="person" onclick="showScreen('me')">
-      💜 Ben
-    </button>
-  </div>
+  <div class="decoration">❤️ ✨ ❤️</div>
 </section>
 
 <!-- ANNE -->
-<section id="mom" class="screen mom">
-  <div class="scene">🏡</div>
+<section id="mom" class="screen">
+  <button class="back" onclick="showScreen('selection')">← Geri</button>
+
+  <div class="house">🏡</div>
+  <h1>Canım Annem ❤️</h1>
+
   <div class="message">
-    <h1>Canım Annem 🌸</h1>
-    <p>
-      Seni çok seviyorum Annem.<br>
-      İyi ki benim annemsin.<br>
-      Yaptığın her şey için çok teşekkür ederim. ❤️
-    </p>
+    <p>Seni çok seviyorum Annem. İyi ki benim Annem'sin. Yaptığın her şey için çok teşekkür ederim. ❤️</p>
   </div>
-  <button class="back" onclick="showScreen('selection')">
-    ← Geri dön
-  </button>
+
+  <div class="decoration">🌷 💗 🏡 💗 🌷</div>
 </section>
 
 <!-- BABA -->
-<section id="dad" class="screen dad">
-  <div class="scene">🚗</div>
+<section id="dad" class="screen">
+  <button class="back" onclick="showScreen('selection')">← Geri</button>
+
+  <div class="car">🏎️</div>
+  <div class="gt-label">NISSAN GT-R</div>
+  <h1>Canım Babam ❤️</h1>
+
   <div class="message">
-    <h1>Canım Babam ❤️</h1>
-    <p>
-      Seni çok seviyorum Babam.<br>
-      Sen dünyanın en iyi babasısın Babam.<br>
-      Yaptığın her şey için çok teşekkür ederim. ❤️
-    </p>
-    <h2>🏎️ NISSAN GT-R</h2>
-    <p>⭐ Hayallerin ve güzel anıların hiç bitmesin ⭐</p>
+    <p>Seni çok seviyorum Babam. Sen dünyanın en iyi Babasısın Babam. Yaptığın her şey için çok teşekkür ederim. ❤️</p>
   </div>
-  <button class="back" onclick="showScreen('selection')">
-    ← Geri dön
-  </button>
+
+  <div class="decoration">⭐ ❤️ 🏁 ❤️ ⭐</div>
 </section>
 
 <!-- KARDEŞ -->
-<section id="brother" class="screen brother">
-  <div class="scene">🐢</div>
+<section id="brother" class="screen">
+  <button class="back" onclick="showScreen('selection')">← Geri</button>
+
+  <div class="turtle">🐢</div>
+  <h1>Canım Kardeşim 💚</h1>
+
   <div class="message">
-    <h1>Canım Kardeşim 💚</h1>
-    <p>
-      Seni çok seviyorum.<br>
-      Hayatta senden iyi ve tatlı bir kardeş yok.<br>
-      Bana her zaman destek olduğun için teşekkür ederim. 💚
-    </p>
+    <p>Canım Kardeşim seni çok seviyorum. Hayatta senden iyi ve tatlı bir kardeş yok. Bana her zaman destek olduğun için teşekkür ederim. 💚</p>
   </div>
-  <button class="back" onclick="showScreen('selection')">
-    ← Geri dön
-  </button>
+
+  <div class="decoration">☁️ ⭐ 🐢 ⭐ ☁️</div>
 </section>
 
 <!-- BEN -->
-<section id="me" class="screen me">
-  <div class="scene">🌌</div>
+<section id="me" class="screen">
+  <button class="back" onclick="showScreen('selection')">← Geri</button>
+
+  <div class="moon">🌙</div>
+  <h1>Ben de bu ailenin bir parçasıyım 💜</h1>
+
   <div class="message">
-    <h1>Ben de bu ailenin bir parçasıyım 💜</h1>
-    <p>
-      Ben de bu ailenin bir parçası olarak
-      hepinizi çok seviyorum ve mutlu olmanızı istiyorum. 💜
-    </p>
+    <p>Ben de bu ailenin bir parçası olarak hepinizi çok seviyorum ve mutlu olmanızı istiyorum. 💜</p>
   </div>
-  <button class="back" onclick="showScreen('selection')">
-    ← Geri dön
-  </button>
+
+  <div class="decoration">🌌 ✨ 💜 ✨ 🌌</div>
 </section>
 
 <script>
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(screen => {
-    screen.classList.remove('active');
+  document.querySelectorAll(".screen").forEach(function(screen) {
+    screen.classList.remove("active");
   });
 
-  document.getElementById(id).classList.add('active');
+  document.getElementById(id).classList.add("active");
   window.scrollTo(0, 0);
 }
 </script>
 
 </body>
 </html>
+
