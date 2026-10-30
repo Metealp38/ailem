@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ailem ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: #17152b;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 25px 18px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.active {
+  display: flex;
+}
+
+h1 {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+p {
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.heart {
+  font-size: 55px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.18); }
+}
+
+.family-list {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.person {
+  border: 1px solid #ffffff40;
+  border-radius: 18px;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  background: #ffffff16;
+  transition: .25s;
+}
+
+.person:active {
+  transform: scale(.96);
+}
+
+.person:hover {
+  background: #ffffff30;
+}
+
+.message {
+  max-width: 520px;
+  padding: 25px;
+  border-radius: 25px;
+  border: 1px solid #ffffff55;
+  background: #ffffff12;
+  backdrop-filter: blur(8px);
+}
+
+.scene {
+  font-size: 100px;
+  margin: 15px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px); }
+}
+
+.mom {
+  background: linear-gradient(160deg,#35152d,#a84b71,#f3a17c);
+}
+
+.dad {
+  background: linear-gradient(160deg,#120b18,#610d22,#ff3434);
+}
+
+.brother {
+  background: linear-gradient(160deg,#073e3a,#167b65,#a4c76c);
+}
+
+.me {
+  background: linear-gradient(160deg,#160e35,#49227e,#a56bdb);
+}
+
+.back {
+  margin-top: 25px;
+  padding: 13px 25px;
+  border: 1px solid #ffffff70;
+  border-radius: 30px;
+  color: white;
+  background: #ffffff20;
+}
+
+footer {
+  margin-top: 35px;
+  opacity: .7;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- AÇILIŞ -->
+<section id="welcome" class="screen active">
+  <div class="heart">❤️</div>
+  <h1>Ailem</h1>
+  <p>Ailem, iyi ki varsınız! ❤️</p>
+  <button class="person" onclick="showScreen('selection')">
+    Sürprizi Aç ✨
+  </button>
+  <footer>Sevgiyle hazırlandı ☁️</footer>
+</section>
+
+<!-- KİŞİ SEÇİMİ -->
+<section id="selection" class="screen">
+  <div class="heart">☁️</div>
+  <h1>Canım Ailem ❤️</h1>
+  <p>Kimin sürprizini görmek istersin?</p>
+
+  <div class="family-list">
+    <button class="person" onclick="showScreen('mom')">
+      🌸 Annem
+    </button>
+
+    <button class="person" onclick="showScreen('dad')">
+      ❤️ Babam
+    </button>
+
+    <button class="person" onclick="showScreen('brother')">
+      💚 Küçük Kardeşim
+    </button>
+
+    <button class="person" onclick="showScreen('me')">
+      💜 Ben
+    </button>
+  </div>
+</section>
+
+<!-- ANNE -->
+<section id="mom" class="screen mom">
+  <div class="scene">🏡</div>
+  <div class="message">
+    <h1>Canım Annem 🌸</h1>
+    <p>
+      Seni çok seviyorum Annem.<br>
+      İyi ki benim annemsin.<br>
+      Yaptığın her şey için çok teşekkür ederim. ❤️
+    </p>
+  </div>
+  <button class="back" onclick="showScreen('selection')">
+    ← Geri dön
+  </button>
+</section>
+
+<!-- BABA -->
+<section id="dad" class="screen dad">
+  <div class="scene">🚗</div>
+  <div class="message">
+    <h1>Canım Babam ❤️</h1>
+    <p>
+      Seni çok seviyorum Babam.<br>
+      Sen dünyanın en iyi babasısın Babam.<br>
+      Yaptığın her şey için çok teşekkür ederim. ❤️
+    </p>
+    <h2>🏎️ NISSAN GT-R</h2>
+    <p>⭐ Hayallerin ve güzel anıların hiç bitmesin ⭐</p>
+  </div>
+  <button class="back" onclick="showScreen('selection')">
+    ← Geri dön
+  </button>
+</section>
+
+<!-- KARDEŞ -->
+<section id="brother" class="screen brother">
+  <div class="scene">🐢</div>
+  <div class="message">
+    <h1>Canım Kardeşim 💚</h1>
+    <p>
+      Seni çok seviyorum.<br>
+      Hayatta senden iyi ve tatlı bir kardeş yok.<br>
+      Bana her zaman destek olduğun için teşekkür ederim. 💚
+    </p>
+  </div>
+  <button class="back" onclick="showScreen('selection')">
+    ← Geri dön
+  </button>
+</section>
+
+<!-- BEN -->
+<section id="me" class="screen me">
+  <div class="scene">🌌</div>
+  <div class="message">
+    <h1>Ben de bu ailenin bir parçasıyım 💜</h1>
+    <p>
+      Ben de bu ailenin bir parçası olarak
+      hepinizi çok seviyorum ve mutlu olmanızı istiyorum. 💜
+    </p>
+  </div>
+  <button class="back" onclick="showScreen('selection')">
+    ← Geri dön
+  </button>
+</section>
+
+<script>
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>
